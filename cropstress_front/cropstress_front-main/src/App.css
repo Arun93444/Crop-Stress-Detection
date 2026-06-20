@@ -1,0 +1,199 @@
+/* ── Theme variables ──────────────────────────────────────── */
+:root, [data-theme="light"] {
+  --bg:        #f4f6f9;
+  --card:      #ffffff;
+  --sidebar:   #ffffff;
+  --border:    #e5e7eb;
+  --text:      #111827;
+  --muted:     #6b7280;
+  --accent:    #16a34a;
+  --accent-bg: #dcfce7;
+  --input-bg:  #f9fafb;
+}
+
+[data-theme="dark"] {
+  --bg:        #0f1117;
+  --card:      #1a1d25;
+  --sidebar:   #141720;
+  --border:    #2d3142;
+  --text:      #e8eaf2;
+  --muted:     #8b90a0;
+  --accent:    #4ade80;
+  --accent-bg: #14271e;
+  --input-bg:  #1e2130;
+}
+
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s, color 0.2s;
+}
+
+h1, h2, h3 { font-weight: 600; line-height: 1.3; color: var(--text); }
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Form inputs ──────────────────────────────────────────── */
+.inp {
+  width: 100%;
+  padding: 9px 13px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+
+.inp:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.inp:hover:not(:focus) { border-color: #9ca3af; }
+
+select.inp { appearance: none; cursor: pointer; }
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  font-family: inherit;
+}
+
+.btn-primary:hover:not(:disabled) { opacity: 0.88; }
+.btn-primary:active:not(:disabled) { transform: scale(0.97); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 20px;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg);
+  border-color: var(--accent);
+}
+
+.btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Spinner ──────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Sidebar nav hover ────────────────────────────────────── */
+aside button:hover {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+
+/* ── Card hover effect ────────────────────────────────────── */
+.card-hover:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* ── Recharts overrides ───────────────────────────────────── */
+.recharts-tooltip-wrapper { outline: none; }
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line { stroke: var(--border); }
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  aside {
+    width: 60px !important;
+  }
+  aside .sidebar-label { display: none; }
+  aside button span:last-child { display: none; }
+  aside button { justify-content: center; padding: 12px !important; }
+  aside .logo-text, aside .user-info { display: none; }
+
+  main { padding: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  aside { display: none !important; }
+  main { padding: 12px !important; }
+}
+
+/* ── Upload drop zone animation ───────────────────────────── */
+@keyframes borderPulse {
+  0%, 100% { border-color: var(--border); }
+  50% { border-color: var(--accent); }
+}
+
+.drop-zone-active {
+  animation: borderPulse 1.5s ease-in-out infinite;
+  background: var(--accent-bg) !important;
+}
+
+/* ── Status dot pulse ─────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.status-dot-live { animation: pulse 1.5s ease-in-out infinite; }
+
+/* ── Transitions ─────────────────────────────────────────── */
+.page-enter { animation: fadeIn 0.2s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Table ────────────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 8px 12px; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--input-bg); }
+
+/* ── Pre / code ───────────────────────────────────────────── */
+pre { font-family: inherit; }
+code { font-family: 'Fira Mono', 'Consolas', monospace; background: var(--input-bg); padding: 2px 6px; border-radius: 4px; font-size: 12px; }

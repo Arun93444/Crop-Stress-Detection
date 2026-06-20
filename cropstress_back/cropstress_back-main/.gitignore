@@ -1,0 +1,43 @@
+# 🔹 Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 🔹 Virtual environment
+venv/
+.env/
+
+# 🔹 Environment variables
+.env
+
+# 🔹 Dataset folders (very important)
+datasets/
+plant_stress_dataset/
+segmentation_dataset/
+VegAnn_dataset/
+soil/
+uploads/
+runs/
+
+# 🔹 Model files (large)
+*.h5
+*.keras
+*.pt
+*.pth
+
+# 🔹 Logs & outputs
+*.log
+training_history.png
+
+# 🔹 OS files
+.DS_Store
+Thumbs.db
+
+# 🔹 IDE files
+.vscode/
+.idea/
+
+# 🔹 Temporary files
+*.tmp
+*.temp

@@ -5,7 +5,7 @@ import {
 } from 'recharts'
 
 // ── API base ──────────────────────────────────────────────
-const API = 'http://localhost:8000'
+const API_BASE = 'https://crop-stress-detection.onrender.com'
 
 // ── Context ───────────────────────────────────────────────
 const AppCtx = createContext({})
@@ -102,7 +102,7 @@ async function apiFetch(path, opts = {}) {
   const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) }
   if (token) headers['Authorization'] = `Bearer ${token}`
   if (opts.body instanceof FormData) delete headers['Content-Type']
-  const r = await fetch(API + path, { ...opts, headers })
+  const r = await fetch(API_BASE + path, { ...opts, headers })
   if (r.status === 401) { localStorage.removeItem('cm_token'); window.location.reload(); return null }
   if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.detail || 'Request failed') }
   return r.json()

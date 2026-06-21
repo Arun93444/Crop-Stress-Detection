@@ -12,9 +12,9 @@ An end-to-end AI-powered crop health monitoring system that detects plant stress
 
 ## 🚀 Live Demo
 
-> Upload a crop image → Get instant AI diagnosis → View stress score, soil condition, disease type, and remedies
+🔗 **[https://crop-stress-detection.vercel.app](https://crop-stress-detection.vercel.app)**
 
----
+> Upload a crop image → Get instant AI diagnosis → View stress score, soil condition, disease type, and remedies
 
 ## ✨ Features
 
